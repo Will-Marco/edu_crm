@@ -1,7 +1,8 @@
 const { Sequelize } = require("sequelize");
-const SessionModel = require("../models/SessionModel");
-const UserModel = require("../models/UserModel");
+const SessionModel = require("../..//models/SessionModel");
+const UserModel = require("../../models/UserModel");
 const relations = require("./relations");
+const init = require("./init");
 
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
@@ -17,6 +18,8 @@ module.exports = async function postgres() {
     db.sessions = await SessionModel(sequelize, Sequelize);
 
     await relations(db);
+
+    await init(db);
 
     await sequelize.sync();
 
