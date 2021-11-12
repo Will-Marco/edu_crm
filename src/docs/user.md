@@ -9,7 +9,7 @@ Headers:
 
 Requset body:
 | Name | Description | Type | Required |
-|------|-------------|------|----------|-
+|------|-------------|------|----------|
 |user_username | User's username (4, 32, unique) | String | true |
 |user_password | User's password (5, 128) | String | true |
 
