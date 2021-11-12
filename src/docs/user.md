@@ -16,5 +16,7 @@ Request body:
 ##### Response status codes
 
 `201 - Token created successfully`
+
 `400 - Username || Password is incorrect`
+
 `500 - Internal Server Error`
