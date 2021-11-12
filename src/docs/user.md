@@ -7,7 +7,7 @@
 Headers:
 `Content-Type: "application/json"`
 
-Requset body:
+Request body:
 | Name | Description | Type | Required |
 | ----------- | ----------- | ---- | --- |
 | username | User's username (5, 32, unique) | String | true |
