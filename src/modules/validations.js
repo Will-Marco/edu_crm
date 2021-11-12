@@ -7,10 +7,9 @@ module.exports = class Validation {
         name: joi
           .string()
           .required()
-          .min(5)
+          .min(4)
           .max(64)
           .error(new Error("Name is invalid")),
-
         password: joi
           .string()
           .required()
