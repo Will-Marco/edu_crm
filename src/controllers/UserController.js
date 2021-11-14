@@ -4,6 +4,7 @@ const {
 } = require("../modules/validations");
 const { createToken } = require("../modules/jwt");
 const { generateHash } = require("../modules/bcrypt");
+const permissionChecker = require("../helpers/permissionChecker");
 
 module.exports = class UserController {
   static async SignInController(req, res, next) {
@@ -49,6 +50,8 @@ module.exports = class UserController {
   }
   static async CreateUserController(req, res, next) {
     try {
+      permissionChecker("admin", req.user_permissions, res.error);
+
       const data = await SignUpValidation(req.body, res.error);
 
       const user = await req.db.users.create({
