@@ -7,6 +7,12 @@ module.exports = async (db) => {
       allowNull: false,
     },
   });
+  await db.sessions.belongsTo(db.users, {
+    foreignKey: {
+      name: "user_id",
+      allowNull: false,
+    },
+  });
   await db.users.hasMany(db.user_permissions, {
     foreignKey: {
       name: "user_id",
