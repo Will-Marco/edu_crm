@@ -7,5 +7,9 @@ module.exports.createToken = function (user) {
 };
 
 module.exports.verifyToken = function (token) {
-  return jwt.verify(token, process.env.JWT_SECRET);
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    return false;
+  }
 };
