@@ -8,9 +8,9 @@ module.exports = class CourseController {
     try {
       permissionChecker("admin", req.user_permissions, res.error);
 
-      const photo = req?.files?.photo;
+      const photo = req.files.photo;
 
-      if (photo && photo?.size > 5 * 1024 * 1024) {
+      if (photo && photo.size > 5 * 1024 * 1024) {
         throw new res.error(400, "Size of photo must be less than 5 mb");
       }
 
@@ -80,9 +80,9 @@ module.exports = class CourseController {
 
       if (!course) throw new res.error(404, "Course not found");
 
-      const photo = req?.files?.photo;
+      const photo = req.files.photo;
 
-      if (photo && photo?.size > 5 * 1024 * 1024) {
+      if (photo && photo.size > 5 * 1024 * 1024) {
         throw new res.error(400, "Size of photo must be less than 5 mb");
       }
 
@@ -93,7 +93,7 @@ module.exports = class CourseController {
           "." +
           photo.mimetype.split("/")[photo.mimetype.split("/").length - 1]
         : course
-        ? course?.course_photo
+        ? course.course_photo
         : null;
 
       if (photo) {

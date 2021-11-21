@@ -30,7 +30,7 @@ module.exports = async function postgres() {
 
     await relations(db);
     await init(db);
-    await sequelize.sync({ force: falce });
+    await sequelize.sync({ force: false });
     return db;
   } catch (error) {
     console.error("Unable to connect to the database:", error);
