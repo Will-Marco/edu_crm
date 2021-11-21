@@ -29,11 +29,8 @@ module.exports = async function postgres() {
     db.group_students = await StudentGroupModel(sequelize, Sequelize);
 
     await relations(db);
-
-    // await db.applicants.sync({ force: true });
-
     await init(db);
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     return db;
   } catch (error) {
     console.error("Unable to connect to the database:", error);
