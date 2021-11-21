@@ -5,6 +5,7 @@
 ##### Request
 
 `SERVER_URL/groups/`
+`method = POST`
 
 Headers:
 `Content-Type: "application/json"`
@@ -31,6 +32,7 @@ Request body:
 ##### Request
 
 `SERVER_URL/groups/`
+`method = GET`
 
 Headers:
 `Content-Type: "application/json"`
@@ -63,6 +65,7 @@ Query body:
 ##### Request
 
 `SERVER_URL/groups/:group_name`
+`method = PUT`
 
 Headers:
 `Content-Type: "application/json"`
@@ -97,8 +100,8 @@ Headers:
 Request body:
 | Name | Description | Type | Required |
 | ----------- | ----------- | ---- | --- |
-| applicant_id | teacher_id| UUID | true |
-| group_id | course_id| UUID | true |
+| applicant_id | applicant_id| UUID | true |
+| group_id | group_id| UUID | true |
 
 ##### Response status codes
 
@@ -132,6 +135,7 @@ Request body:
 ##### Request
 
 `SERVER_URL/groups/students/:group_name`
+`method = GET`
 
 Headers:
 `Content-Type: "application/json"`

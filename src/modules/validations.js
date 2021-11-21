@@ -191,7 +191,6 @@ module.exports = class Validations {
       .object({
         applicant_id: joi
           .string()
-          .required()
           .error(new CustomError(400, "Applicant id invalid")),
         group_id: joi
           .string()

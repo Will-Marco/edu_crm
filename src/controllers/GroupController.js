@@ -118,14 +118,14 @@ module.exports = class GroupRouteController {
     try {
       permissionChecker("admin", req.user_permissions, res.error);
 
-      const { applicant_id, group_id } = AddApplicantValidation(
+      const { applicant_id, group_name } = AddApplicantValidation(
         req.body,
         res.error
       );
 
       const new_student = await req.db.group_students.create({
         group_student_id: applicant_id,
-        group_id: group_id,
+        group_id: group_name,
       });
 
       console.log(new_student);
@@ -146,6 +146,7 @@ module.exports = class GroupRouteController {
         message: "Applicant added to course succesfully",
       });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
