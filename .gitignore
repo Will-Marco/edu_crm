@@ -2,3 +2,4 @@ tutorial
 node_modules/
 .env
 package-lock.json
+/src/public/uploads/

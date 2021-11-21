@@ -1,4 +1,5 @@
 const joi = require("joi");
+
 module.exports = class Validations {
   static async SignUpValidation(data, Error) {
     return await joi
@@ -29,6 +30,7 @@ module.exports = class Validations {
       })
       .validateAsync(data);
   }
+
   static async SignInValidation(data, CustomError) {
     return await joi
       .object({
@@ -46,6 +48,7 @@ module.exports = class Validations {
       })
       .validateAsync(data);
   }
+
   static async AddTeacherValidation(data, CustomError) {
     return await joi
       .object({
@@ -60,6 +63,29 @@ module.exports = class Validations {
           .error(new CustomError(400, "Phone is invalid"))
           .regex(/^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/),
         skills: joi.array().items(joi.string().min(2).max(32)).required(),
+      })
+      .validateAsync(data);
+  }
+
+  static async CourseCreateValidation(data, CustomError) {
+    return await joi
+      .object({
+        name: joi
+          .string()
+          .min(8)
+          .max(128)
+          .required()
+          .error(new CustomError(400, "Name is invalid")),
+        description: joi
+          .string()
+          .required()
+          .error(new CustomError(400, "Description is invalid"))
+          .min(64),
+        price: joi
+          .number()
+          .min(0)
+          .error(new CustomError(400, "Price is invalid"))
+          .required(),
       })
       .validateAsync(data);
   }
