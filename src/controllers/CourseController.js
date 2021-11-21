@@ -7,7 +7,7 @@ module.exports = class CourseController {
     try {
       permissionChecker("admin", req.user_permissions, res.error);
 
-      const photo = req.files.photo;
+      const photo = req?.files?.photo;
 
       if (photo && photo?.size > 5 * 1024 * 1024) {
         throw new res.error(400, "Size of photo must be less than 5 mb");
@@ -40,5 +40,27 @@ module.exports = class CourseController {
       next(error);
     }
   }
+
+  static async CourseGetController(req, res, next) {
+    try {
+      const limit = req.query.limit || 15;
+      const offset = req.query.offset - 1 || 0;
+
+      const courses = await req.db.courses.findAll({
+        raw: true,
+        limit,
+        offset: offset * 15,
+      });
+
+      res.status(200).json({
+        ok: true,
+        message: "Courses",
+        data: {
+          courses,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 };
-c;
