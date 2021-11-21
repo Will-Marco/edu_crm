@@ -1,5 +1,8 @@
 const permissionChecker = require("../helpers/permissionChecker");
-const { GroupCreateValidation } = require("../modules/validations");
+const {
+  GroupCreateValidation,
+  AddApplicantValidation,
+} = require("../modules/validations");
 
 module.exports = class GroupRouteController {
   static async GroupCreatePostController(req, res, next) {
@@ -104,7 +107,10 @@ module.exports = class GroupRouteController {
     try {
       permissionChecker("admin", req.user_permissions, res.error);
 
-      const { applicant_id, group_id } = req.body;
+      const { applicant_id, group_id } = AddApplicantValidation(
+        req.body,
+        res.error
+      );
 
       const new_student = await req.db.group_students.create({
         group_student_id: applicant_id,
