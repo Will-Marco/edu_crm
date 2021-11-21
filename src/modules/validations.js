@@ -1,15 +1,15 @@
 const joi = require("joi");
-
-module.exports = class Validation {
+module.exports = class Validations {
   static async SignUpValidation(data, Error) {
     return await joi
       .object({
         name: joi
           .string()
           .required()
-          .min(4)
+          .min(5)
           .max(64)
           .error(new Error("Name is invalid")),
+        email: joi.string().email().error(new Error("Email is invalid")),
         password: joi
           .string()
           .required()
@@ -29,7 +29,6 @@ module.exports = class Validation {
       })
       .validateAsync(data);
   }
-
   static async SignInValidation(data, CustomError) {
     return await joi
       .object({
@@ -44,6 +43,23 @@ module.exports = class Validation {
           .max(128)
           .min(5)
           .error(new CustomError(400, "Password is invalid")),
+      })
+      .validateAsync(data);
+  }
+  static async AddTeacherValidation(data, CustomError) {
+    return await joi
+      .object({
+        user_id: joi
+          .string()
+          .uuid()
+          .required()
+          .error(new CustomError(400, "User id is invalid")),
+        phone: joi
+          .string()
+          .required()
+          .error(new CustomError(400, "Phone is invalid"))
+          .regex(/^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/),
+        skills: joi.array().items(joi.string().min(2).max(32)).required(),
       })
       .validateAsync(data);
   }

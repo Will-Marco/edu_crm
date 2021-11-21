@@ -8,8 +8,8 @@ const customErrorMiddleware = require("./middlewares/customErrorMiddleware");
 
 async function server(mode) {
   try {
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Server ready at ${process.env.PORT || 3000}`);
+    app.listen(process.env.PORT || 8080, () => {
+      console.log(`Server ready at ${process.env.PORT || 8080}`);
     });
 
     const db = await postgres();
