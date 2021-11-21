@@ -17,6 +17,6 @@ GroupRouter.post("/", GroupCreatePostController);
 GroupRouter.put("/:group_name", GroupUpdatecontroller);
 GroupRouter.post("/student", AddApplicantToGroupController);
 GroupRouter.delete("/student/:student_id", DeleteStudentFromGroupController);
-GroupRouter.get("/:group_name", GroupStudentsGetController);
+GroupRouter.get("/students/:group_name", GroupStudentsGetController);
 
 module.exports = GroupRouter;

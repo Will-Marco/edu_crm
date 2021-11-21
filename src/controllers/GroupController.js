@@ -210,7 +210,7 @@ module.exports = class GroupRouteController {
       });
       res.status(200).json({
         ok: true,
-        message: "GroupStudents",
+        message: "Group_Students",
         data: {
           students,
         },
