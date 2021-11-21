@@ -11,6 +11,7 @@ module.exports = class Validations {
           .max(64)
           .error(new Error("Name is invalid")),
         email: joi.string().email().error(new Error("Email is invalid")),
+
         password: joi
           .string()
           .required()
